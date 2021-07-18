@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Image Lab</title>
+
+    <script src="https://unpkg.com/blockly/blockly.min.js"></script>
+
+    <!-- <script  src="/hello-world/node_modules/blockly/blockly_compressed.js"></script>
+    <script  src="/hello-world/node_modules/blockly/blocks_compressed.js"></script>
+    <script  src="node_modules/blockly/msg/js/en.js"></script> -->
+
+</head>
+
+<body>
+    <h1>Image Lab</h1>
+
+    <!--div indicates workspace that blocks will be dropped in -->
+    <div id="blocklyDiv" style="height: 500px; width: 1200px;"></div>
+
+    <xml id="toolbox" style="display: none">
+
+        <category name="Geometric Transformations">
+            <block type="geometric_reflectimage">
+                <field name="direction_dropdown">X</field>
+            </block>
+            <block type="geometric_rotateimage">
+                <field name="rotation_angle">90</field>
+                <field name="rotation_scale">1</field>
+            </block>
+            <block type="geometric_colormaps">
+                <field name="colormap_dropdown">HOT</field>
+            </block>
+            <block type="geometric_affineimage"></block>
+            <block type="geometric_scaleimage">
+                <field name="scale_x">1</field>
+                <field name="scale_y">1</field>
+            </block>
+        </category>
+        <category name="Basic Operations"></category>
+
+    </xml>
+
+    <script src='ImageLab Blocks.js'></script>
+    <script src=workspace.js></script>
+    <script src="https://unpkg.com/@blockly/continuous-toolbox"></script>
+
+    <script>
+        var workspace = Blockly.inject(blocklyDiv, {
+            plugins: {
+                'toolbox': ContinuousToolbox,
+                'flyoutsVerticalToolbox': ContinuousFlyout,
+                'metricsManager': ContinuousMetrics,
+            },
+            toolbox: toolbox,
+            trashcan: true,
+            media: 'https://blockly-demo.appspot.com/static/media/',
+            scrollbars: true,
+            sounds: true,
+            oneBasedIndex: true,
+            zoom: {
+                controls: true,
+                wheel: false,
+                startScale: 1,
+                maxScale: 3,
+                minScale: 0.3,
+                scaleSpeed: 1.1
+            }
+        });
+    </script>
+
+</body>
+
+</html>
